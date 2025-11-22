@@ -44,6 +44,12 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - server		
 volumes:
   db-data:
 

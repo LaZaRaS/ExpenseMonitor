@@ -1,34 +1,48 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useState, useEffect } from 'react'
+import { getUsers, getExpenses } from './api/api'
+import UsersPage from './pages/UsersPage'
+import ExpensesPage from './pages/ExpensesPage'
 import './App.css'
 
+console.log('App.jsx loaded')
 function App() {
-  const [count, setCount] = useState(0)
+  const [tab, setTab] = useState('users')
+  const [users, setUsers] = useState([])
+  const [expenses, setExpenses] = useState([])
+
+  const fetchAll = () => {
+    getUsers().then(setUsers)
+    getExpenses().then(setExpenses)
+  }
+
+  useEffect(() => {
+    fetchAll()
+  }, [])
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className="app">
+      <h1>Expense Share Monitor</h1>
+
+      <nav className="tabs">
+        {['users', 'expenses'].map(t => (
+          <button
+            key={t}
+            className={tab === t ? 'active' : ''}
+            onClick={() => setTab(t)}
+          >
+            {t.charAt(0).toUpperCase() + t.slice(1)}
+          </button>
+        ))}
+      </nav>
+
+      {tab === 'users' && (
+        <UsersPage users={users} onRefresh={fetchAll} />
+      )}
+
+      {tab === 'expenses' && (
+        <ExpensesPage expenses={expenses} users={users} onRefresh={fetchAll} />
+      )}
+    </div>
   )
 }
 

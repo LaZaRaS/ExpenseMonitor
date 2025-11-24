@@ -22,17 +22,19 @@ function ExpenseForm({ users, onExpenseCreated }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="flex flex-wrap gap-3 mb-6">
       <input
         placeholder="Description"
         value={form.description}
         onChange={e => setForm({ ...form, description: e.target.value })}
         required
+        className="flex-1 min-w-[200px] px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-purple-600 focus:ring-2 focus:ring-purple-200 transition-all"
       />
       <select
         value={form.userId}
         onChange={e => setForm({ ...form, userId: e.target.value })}
         required
+        className="flex-1 min-w-[200px] px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-purple-600 focus:ring-2 focus:ring-purple-200 transition-all"
       >
         <option value="">Paid By</option>
         {users.map(u => (
@@ -46,14 +48,20 @@ function ExpenseForm({ users, onExpenseCreated }) {
         value={form.amount}
         onChange={e => setForm({ ...form, amount: e.target.value })}
         required
+        className="flex-1 min-w-[200px] px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-purple-600 focus:ring-2 focus:ring-purple-200 transition-all"
       />
       <input
         type="date"
         value={form.expenseDate}
         onChange={e => setForm({ ...form, expenseDate: e.target.value })}
         required
+        className="flex-1 min-w-[200px] px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-purple-600 focus:ring-2 focus:ring-purple-200 transition-all"
       />
-      <button type="submit">Add Expense</button>
+      <button type="submit"
+      className="px-6 py-3 bg-gradient-to-r from-sky-600 to-cyan-400 text-white font-semibold rounded-lg hover:-translate-y-1 hover:shadow-lg transition-all duration-200"
+      >
+        Add Expense
+      </button>
     </form>
   )
 }

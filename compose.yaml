@@ -45,7 +45,10 @@ services:
       timeout: 5s
       retries: 5
   frontend:
-    build: ./frontend
+    build: 
+      context: ./frontend
+      target: prod
+    container_name: expense_monitor_webapp
     ports:
       - "3000:80"
     depends_on:

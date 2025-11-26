@@ -7,7 +7,7 @@ function ExpenseList({ expenses, onExpenseDeleted }) {
   }
 
   return (
-    <ul className="space-y-0">
+    <ul className="space-y-0 border-2 border-gray-200">
       {expenses.map(exp => (
         <li key={exp.id}
         className="flex justify-between items-center p-4 border-b border-gray-100 last:border-b-0 hover:bg-gray-50 transition-colors"

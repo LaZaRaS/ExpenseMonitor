@@ -15,7 +15,7 @@ export const deleteUser = (id) => fetch(`${API}/users/${id}`, { method: 'DELETE'
 .then(r => { if (!r.ok) throw new Error('Delete failed'); return r })
 
 // Expenses
-export const createExpense = (expense, userId, groupId) => fetch(`${API}/expenses?userId=${userId}&groupId=${groupId}`, {
+export const createExpense = (expense, userId) => fetch(`${API}/expenses?userId=${userId}`, {
   method: 'POST',
   headers: { 'Content-Type': 'application/json' },
   body: JSON.stringify(expense)

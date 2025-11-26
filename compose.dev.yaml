@@ -1,6 +1,20 @@
-version: '3.8'
-
 services:
+  db:
+    image: postgres
+    restart: always
+    user: postgres
+    volumes:
+      - db-data:/var/lib/postgresql
+    environment:
+      - POSTGRES_DB=expense_monitor
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: [ "CMD", "pg_isready" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
   frontend:
     build:
       context: ./frontend
@@ -8,7 +22,11 @@ services:
     ports:
       - "5173:5173"
     volumes:
-      - ./frontend:/app
-      - /app/node_modules # stops overwriting of this folder in the docker container (deps should remain)
+      - ./frontend:/app:delegated
+      - /app/node_modules
     environment:
       - CHOKIDAR_USEPOLLING=true  # uses fs.watchFile instead of fs.watch, as it is better in virtualized systems
+      - WATCHPACK_POLLING=true
+      - WATCHPACK_INTERVAL=1000
+volumes:
+  db-data:

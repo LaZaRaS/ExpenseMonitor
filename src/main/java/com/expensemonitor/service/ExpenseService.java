@@ -18,12 +18,12 @@ public class ExpenseService {
     public final UserRepo userRepo;
     public final GroupRepo groupRepo;
 
-    public Expense createExpense(Expense expense, Long userId, Long groupId) {
+    public Expense createExpense(Expense expense, Long userId) {
         User paidUser = userRepo.findById(userId).orElseThrow();
-        Group group = groupRepo.findById(groupId).orElseThrow();
+        //Group group = groupRepo.findById(groupId).orElseThrow();
 
         expense.setPaidUser(paidUser);
-        expense.setGroup(group);
+        //expense.setGroup(group);
         return expenseRepo.save(expense);
     }
 

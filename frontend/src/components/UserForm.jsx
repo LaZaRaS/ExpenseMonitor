@@ -18,14 +18,14 @@ function UserForm({ onUserCreated }) {
         value={form.name}
         onChange={e => setForm({ ...form, name: e.target.value })}
         required
-        className="flex-1 min-w-[150px] px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-purple-600 focus:ring-2 focus:ring-purple-200 transition-all"
+        className="flex-1 min-w-[150px] px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-sky-200 focus:ring-2 focus:ring-sky-600 transition-all"
       />
       <input
         placeholder="Username"
         value={form.username}
         onChange={e => setForm({ ...form, username: e.target.value })}
         required
-        className="flex-1 min-w-[150px] px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-purple-600 focus:ring-2 focus:ring-purple-200 transition-all"
+        className="flex-1 min-w-[150px] px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-sky-200 focus:ring-2 focus:ring-sky-600 transition-all"
       />
       <input
         placeholder="Password"
@@ -33,7 +33,7 @@ function UserForm({ onUserCreated }) {
         value={form.password}
         onChange={e => setForm({ ...form, password: e.target.value })}
         required
-        className="flex-1 min-w-[150px] px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-purple-600 focus:ring-2 focus:ring-purple-200 transition-all"
+        className="flex-1 min-w-[150px] px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-sky-200 focus:ring-2 focus:ring-sky-600 transition-all"
       />
       <button type="submit" className="px-6 py-3 bg-gradient-to-r from-sky-600 to-cyan-400 text-white font-semibold rounded-lg hover:-translate-y-1 hover:shadow-lg transition-all duration-200"
       >

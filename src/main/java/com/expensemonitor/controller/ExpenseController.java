@@ -14,8 +14,8 @@ public class ExpenseController {
     private final ExpenseService expenseService;
 
     @PostMapping
-    public Expense createExpense(@RequestBody Expense expense, @RequestParam Long userId, @RequestParam Long groupId) {
-        return expenseService.createExpense(expense,userId,groupId);
+    public Expense createExpense(@RequestBody Expense expense, @RequestParam Long userId) {
+        return expenseService.createExpense(expense,userId);
     }
 
     @GetMapping

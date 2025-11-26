@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { deleteUser } from '../api/api'
 
 function UserList({ users, onUserDeleted }) {
@@ -8,12 +9,12 @@ function UserList({ users, onUserDeleted }) {
     try {
       const response = await deleteUser(id)
       if(!response.ok) {
-      setError(`Can't delete ${name}: Associated with expenses`)
+      setError(`Can't delete ${name}: Associated with expense(s)`)
       }  
       onUserDeleted()
     }
     catch(err) {
-      setError(`Can't delete ${name}: Associated with expenses`)
+      setError(`Can't delete ${name}: Associated with expense(s)`)
     }
   }
 
@@ -24,7 +25,7 @@ function UserList({ users, onUserDeleted }) {
           {error}
         </div>
       )}
-      <ul className="space-y-0">
+      <ul className="space-y-0 border-2 border-gray-200">
         {users.map(user => (
           <li key={user.id}
           className="flex justify-between items-center p-4 border-b border-gray-100 last:border-b-0 hover:bg-gray-50 transition-colors"
